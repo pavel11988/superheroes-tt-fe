@@ -94,12 +94,12 @@ export const ButtonClose = styled.button`
 
   margin-left: auto;
 
-  background-color: #b60000;
+  background-color: #636363;
 
   &:hover,
   &:focus,
   &:active {
-    background-color: #780000;
+    background-color: #333333;
     opacity: 0.7;
 }
 

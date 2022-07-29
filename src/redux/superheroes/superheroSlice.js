@@ -4,6 +4,9 @@ import superheroesOperations from "./superheroOperations";
 const initialState = {
   superheroes: [],
   currentSuperhero: {},
+  totalPages: 0,
+  page: 1,
+  limit: 5,
   status: null,
   error: null,
 };
@@ -19,51 +22,96 @@ const superheroSlice = createSlice({
     },
     [superheroesOperations.listSuperheroes.fulfilled]: (state, action) => {
       state.status = "resolved";
-      console.log(action.payload.data);
+      state.totalPages = action.payload.totalPages;
+      state.page = action.payload.page;
+      state.limit = action.payload.limit;
       state.superheroes = action.payload.data;
     },
     [superheroesOperations.listSuperheroes.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = true;
     },
-  },
 
-  //add superhero:
-  [superheroesOperations.addSuperhero.pending]: (state, action) => {
-    state.status = "pending";
-    state.error = null;
-  },
-  [superheroesOperations.addSuperhero.fulfilled]: (state, action) => {
-    state.status = "resolved";
-    console.log(action.payload.data);
-  },
-  [superheroesOperations.rejected]: (state, action) => {
-    state.status = "rejected";
-    state.error = true;
-  },
+    //add superhero:
+    [superheroesOperations.addSuperhero.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.addSuperhero.fulfilled]: (state, action) => {
+      state.status = "resolved";
+    },
+    [superheroesOperations.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
 
-  //delete superhero:
-  [superheroesOperations.addSuperhero.pending]: (state, action) => {
-    state.status = "pending";
-    state.error = null;
-  },
-  [superheroesOperations.addSuperhero.pending]: (state, action) => {
-    state.status = "resolved";
-  
-  },
-  [superheroesOperations.addSuperhero.pending]: (state, action) => {
-    state.status = "rejected";
-    state.error = true;
+    //delete superhero:
+    [superheroesOperations.deleteSuperhero.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.deleteSuperhero.fulfilled]: (state, action) => {
+      state.status = "resolved";
+    },
+    [superheroesOperations.deleteSuperhero.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+
+    //get superhero by id:
+    [superheroesOperations.getSuperheroById.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.getSuperheroById.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.currentSuperhero = action.payload.data;
+    },
+    [superheroesOperations.getSuperheroById.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+
+    //update superhero:
+    [superheroesOperations.updateSuperhero.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.updateSuperhero.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.currentSuperhero = {};
+    },
+    [superheroesOperations.updateSuperhero.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+
+    //add image superhero:
+    [superheroesOperations.addSuperheroImage.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.addSuperheroImage.fulfilled]: (state, action) => {
+      state.status = "resolved";
+    },
+    [superheroesOperations.addSuperheroImage.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+
+    //delete image superhero:
+    [superheroesOperations.deleteSuperheroImage.pending]: (state, action) => {
+      state.status = "pending";
+      state.error = null;
+    },
+    [superheroesOperations.deleteSuperheroImage.fulfilled]: (state, action) => {
+      state.status = "resolved";
+    },
+    [superheroesOperations.deleteSuperheroImage.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = true;
+    },
   },
 });
-
-
-// listSuperheroes(state, action) {},
-// addSuperhero(state, action) {},
-// getSuperheroById(state, action) {},
-// deleteSuperhero(state, action) {},
-// updateSuperhero(state, action) {},
-// addSuperheroImage(state, action) {},
-// deleteSuperheroImage(state, action) {},
 
 export default superheroSlice.reducer;

@@ -8,10 +8,10 @@ export const ButtonsContainer = styled.div`
 export const ButtonWrapper = styled.div`
   width: 50px;
   height: 50px;
-  &:not(:last-of-type){
+  &:not(:last-of-type) {
     margin-right: 15px;
   }
-`
+`;
 
 export const ButtonDelete = styled.button`
   border-radius: 50%;

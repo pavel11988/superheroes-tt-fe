@@ -1,4 +1,4 @@
-//import libs
+// import libs
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,6 +7,7 @@ import superheroesOperations from "../../redux/superheroes/superheroOperations";
 
 // components
 import Loader from "../Loader/Loader";
+import { ReactComponent as CloseIcon } from "../../images/cross.svg";
 
 // styled components
 import {
@@ -21,22 +22,17 @@ import {
   Title,
 } from "./EditForm.styled";
 
-import { ReactComponent as CloseIcon } from "../../images/cross.svg";
 
 const EditForm = ({ setViewEditor }) => {
-
+  const dispatch = useDispatch();
   const currentSuperhero = useSelector(
     (state) => state.superheroes.currentSuperhero
   );
-  const status = useSelector(state => state.superheroes.status);
-  const currentPage = useSelector(state => state.superheroes.page)
-  const currentLimit = useSelector(state => state.superheroes.limit)
-  
-
+  const currentPage = useSelector((state) => state.superheroes.page);
+  const currentLimit = useSelector((state) => state.superheroes.limit);
 
   const { nickname, real_name, origin_description, superpowers, catch_phrase } =
     currentSuperhero;
-  const dispatch = useDispatch();
 
   const {
     register,
@@ -61,14 +57,17 @@ const EditForm = ({ setViewEditor }) => {
     await dispatch(
       superheroesOperations.updateSuperhero({ superheroId, updatedSuperhero })
     );
-    
-    await dispatch(superheroesOperations.listSuperheroes(currentPage, currentLimit));
+
+    await dispatch(
+      superheroesOperations.listSuperheroes(currentPage, currentLimit)
+    );
 
     setViewEditor(false);
   };
 
-  const PENDING = status === 'pending';
-  const RESOLVED = status === 'resolved';
+  const status = useSelector((state) => state.superheroes.status);
+  const PENDING = status === "pending";
+  const RESOLVED = status === "resolved";
 
   return (
     <EditorContainer>
@@ -204,8 +203,10 @@ const EditForm = ({ setViewEditor }) => {
           </ErrorMessage>
         </FieldContainer>
         <div>
-          {PENDING && <Loader color={"white"}/>}
-          {RESOLVED && <ButtonUpdate type="submit" value="Update" disabled={!isValid} />}
+          {PENDING && <Loader color={"white"} />}
+          {RESOLVED && (
+            <ButtonUpdate type="submit" value="Update" disabled={!isValid} />
+          )}
         </div>
       </Form>
     </EditorContainer>

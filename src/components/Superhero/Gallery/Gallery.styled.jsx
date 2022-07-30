@@ -14,7 +14,7 @@ export const GalleryList = styled.ul`
   flex-wrap: wrap;
   padding: 0;
 
-  & > li:not(:last-of-type){
+  & > li:not(:last-of-type) {
     margin-right: 10px;
   }
 `;
@@ -23,10 +23,10 @@ export const GalleryItem = styled.li`
   position: relative;
   width: 70px;
   height: 70px;
-
+  margin-bottom: 5px;
   &:hover,
-  &:focus{
-    & > div:nth-of-type(n){
+  &:focus {
+    & > div:nth-of-type(n) {
       visibility: visible;
     }
   }
@@ -35,13 +35,13 @@ export const GalleryItem = styled.li`
 export const GalleryImage = styled.img`
   width: 70px;
   height: 70px;
-  
-`
+  object-fit: cover;
+`;
 export const ImageButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   background-color: #00000080;
   width: 70px;
   height: 70px;
@@ -51,12 +51,11 @@ export const ImageButtonsContainer = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 
-  & > button:not(:last-of-type){
+  & > button:not(:last-of-type) {
     margin-right: 5px;
   }
-  
 `;
 
 export const ImageButton = styled.button`
@@ -73,9 +72,7 @@ export const ImageButton = styled.button`
   background-color: transparent;
 
   &:hover,
-  &:focus{
-    background-color:#3a3a3a71;
+  &:focus {
+    background-color: #3a3a3a71;
   }
-
-
-`
+`;

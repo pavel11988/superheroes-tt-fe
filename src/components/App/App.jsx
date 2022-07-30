@@ -1,14 +1,13 @@
-//libs
+// libs
 import Modal from "react-modal";
-import { Toaster } from 'react-hot-toast';
-
+import { Toaster } from "react-hot-toast";
 
 // hooks:
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-//
+// redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
 
 // components:
@@ -21,7 +20,6 @@ import { ReactComponent as AddIcon } from "../../images/add.svg";
 // styled components
 import { AddButton, AppContainer, ListContainer, Title } from "./App.styled";
 import ImageModal from "../ImageModal/ImageModal";
-
 
 const modalStyles = {
   content: {
@@ -43,12 +41,12 @@ const modalStyles = {
 Modal.setAppElement("#root");
 
 function App() {
+  const dispatch = useDispatch();
+
   const [viewAddForm, setViewAddForm] = useState(false);
   const [viewEditForm, setViewEditForm] = useState(false);
   const [viewImageModal, setViewImageModal] = useState(false);
   const [imageToImageModal, setImageToImageModal] = useState(null);
-
-  const dispatch = useDispatch();
 
   const totalPages = useSelector((state) => state.superheroes.totalPages);
   const page = useSelector((state) => state.superheroes.page);
@@ -56,7 +54,6 @@ function App() {
   useEffect(() => {
     dispatch(superheroesOperations.listSuperheroes());
   }, [dispatch]);
-
 
   const VIEW_MODAL_IMAGE =
     viewImageModal === true && imageToImageModal !== null;
@@ -66,27 +63,25 @@ function App() {
   return (
     <AppContainer>
       <Title>Create your own superhero squad!</Title>
-      
-     
-        <ListContainer>
-          {page === 1 && (
-            <AddButton
-              type="button"
-              onClick={() => {
-                setViewAddForm(true);
-              }}
-            >
-              {<AddIcon fill={"#f9f9f9"} />}
-            </AddButton>
-          )}
 
-          <SuperheroList
-            setViewEditForm={setViewEditForm}
-            setViewImageModal={setViewImageModal}
-            setImageToImageModal={setImageToImageModal}
-          />
-        </ListContainer>
-     
+      <ListContainer>
+        {page === 1 && (
+          <AddButton
+            type="button"
+            onClick={() => {
+              setViewAddForm(true);
+            }}
+          >
+            {<AddIcon fill={"#f9f9f9"} />}
+          </AddButton>
+        )}
+
+        <SuperheroList
+          setViewEditForm={setViewEditForm}
+          setViewImageModal={setViewImageModal}
+          setImageToImageModal={setImageToImageModal}
+        />
+      </ListContainer>
 
       {totalPages > 1 && <Pagination totalPages={totalPages} />}
 
@@ -108,10 +103,7 @@ function App() {
         )}
       </Modal>
 
-      <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
+      <Toaster position="top-right" reverseOrder={false} />
     </AppContainer>
   );
 }

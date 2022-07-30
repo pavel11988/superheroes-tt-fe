@@ -1,17 +1,12 @@
+// components
 import Characteristic from "./Characteristic/Characteristic";
 import Avatar from "./Avatar/Avatar";
 import Gallery from "./Gallery/Gallery";
 import Uploader from "./Uploader/Uploader";
-import Controllers from './Controllers/Controllers';
-
+import Controllers from "./Controllers/Controllers";
 
 //styled components
-import {
-  Card,
-  Nickname,
-  RealName,
-} from "./Superhero.styled";
-
+import { Card, Nickname, RealName } from "./Superhero.styled";
 
 const Superhero = ({
   superhero,
@@ -32,7 +27,7 @@ const Superhero = ({
         setImageToImageModal={setImageToImageModal}
       />
       <Uploader superhero={superhero} />
-      <Controllers superhero={superhero} setViewEditForm={setViewEditForm}/>
+      <Controllers superhero={superhero} setViewEditForm={setViewEditForm} />
     </Card>
   );
 };

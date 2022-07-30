@@ -1,8 +1,17 @@
+// redux
 import { useSelector } from "react-redux";
+
+// components
 import Superhero from "../Superhero/Superhero";
+
+// styled components
 import { List } from "./SuperheroList.styled";
 
-const SuperheroList = ({ setViewEditForm, setViewImageModal, setImageToImageModal }) => {
+const SuperheroList = ({
+  setViewEditForm,
+  setViewImageModal,
+  setImageToImageModal,
+}) => {
   const superheroes = useSelector((state) => state.superheroes.superheroes);
 
   return (

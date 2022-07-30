@@ -1,6 +1,11 @@
+// config
 import { BASE_URL, IMAGES } from "../../config";
-import { Button, ModalContainer } from "./ImageModal.styled";
+
+//components
 import { ReactComponent as CloseIcon } from "../../images/cross.svg";
+
+// styled components
+import { Button, ModalContainer } from "./ImageModal.styled";
 
 const ImageModal = ({
   setImageToImageModal,
@@ -15,7 +20,7 @@ const ImageModal = ({
   return (
     <ModalContainer>
       <Button type="submit" onClick={handleClose}>
-        {<CloseIcon fill={"#ffffff"} width={"20"} height={"20"}/>}
+        {<CloseIcon fill={"#ffffff"} width={"20"} height={"20"} />}
       </Button>
 
       <img

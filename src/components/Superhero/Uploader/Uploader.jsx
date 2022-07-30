@@ -1,9 +1,15 @@
+// libs
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import superheroesOperations from "../../../redux/superheroes/superheroOperations";
-import { ReactComponent as UploadIcon } from "../../../images/upload.svg";
 import toast from "react-hot-toast";
 
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import superheroesOperations from "../../../redux/superheroes/superheroOperations";
+
+// components
+import { ReactComponent as UploadIcon } from "../../../images/upload.svg";
+
+// styled components
 import {
   ButtonUpload,
   ErrorContainer,
@@ -29,7 +35,7 @@ const Uploader = ({ superhero }) => {
     event.preventDefault();
     const newImage = event.target.files[0];
     setUploadError(false);
-    
+
     if (!newImage) {
       setImage(null);
       return;
@@ -40,12 +46,13 @@ const Uploader = ({ superhero }) => {
       let image = new Image();
       image.src = event.target.result;
       image.onload = function () {
-        if (image.width < 70 || image.height < 70 || newImage.size > 5120000) {
-          setUploadError(true);
+        const isError =
+          image.width < 70 || image.height < 70 || newImage.size > 5120000;
+        setUploadError(isError);
+        if (!isError) {
           setImage(newImage);
         } else {
-          setUploadError(false);
-          setImage(newImage);
+          setImage(null);
         }
       };
     };
@@ -71,11 +78,11 @@ const Uploader = ({ superhero }) => {
     await dispatch(
       superheroesOperations.listSuperheroes(currentPage, currentLimit)
     );
-
     setImage(null);
   };
 
-  const DISABLED_BUTTON_UPLOAD = !image || uploadError === true;
+  const DISABLED_BUTTON_UPLOAD =
+    !image || uploadError === true || arrayIsFull === true;
   const UPLOAD_ERROR = uploadError === true;
 
   return (
@@ -96,13 +103,14 @@ const Uploader = ({ superhero }) => {
           onChange={handleImage}
         />
       </InputContainer>
-    {UPLOAD_ERROR && <ErrorContainer>
-        <ErrorMessage>
-          Error! The image size should be smaller 5 MB and resolution more than
-          70x70 pixels
-        </ErrorMessage>
-      </ErrorContainer>}
-      
+      {UPLOAD_ERROR && (
+        <ErrorContainer>
+          <ErrorMessage>
+            Error! The image size should be smaller 5 MB and resolution more
+            than 70x70 pixels
+          </ErrorMessage>
+        </ErrorContainer>
+      )}
     </UploadContainer>
   );
 };

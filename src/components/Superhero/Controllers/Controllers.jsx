@@ -1,22 +1,22 @@
 // import libs
 import { useState } from "react";
 
-//redux
+// redux
 import { useDispatch, useSelector } from "react-redux";
 
-//styled components
+// components
+import { ReactComponent as DeleteIcon } from "../../../images/delete.svg";
+import { ReactComponent as EditIcon } from "../../../images/edit.svg";
+import superheroesOperations from "../../../redux/superheroes/superheroOperations";
+import Loader from "../../Loader/Loader";
+
+// styled components
 import {
   ButtonChange,
   ButtonDelete,
   ButtonsContainer,
   ButtonWrapper,
 } from "./Controllers.styled";
-
-//components
-import { ReactComponent as DeleteIcon } from "../../../images/delete.svg";
-import { ReactComponent as EditIcon } from "../../../images/edit.svg";
-import superheroesOperations from "../../../redux/superheroes/superheroOperations";
-import Loader from "../../Loader/Loader";
 
 const Controllers = ({ superhero, setViewEditForm }) => {
   const dispatch = useDispatch();

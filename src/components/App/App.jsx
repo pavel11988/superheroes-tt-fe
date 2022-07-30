@@ -49,8 +49,6 @@ function App() {
   const totalPages = useSelector((state) => state.superheroes.totalPages);
   const page = useSelector((state) => state.superheroes.page);
 
-  console.log(page);
-
   useEffect(() => {
     dispatch(superheroesOperations.listSuperheroes());
   }, [dispatch]);

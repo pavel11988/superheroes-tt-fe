@@ -6,6 +6,7 @@ export const GalleryContainer = styled.div`
     color: #aeaeae;
   }
   width: 300px;
+  height: 200px;
 `;
 
 export const GalleryList = styled.ul`

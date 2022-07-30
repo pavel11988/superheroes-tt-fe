@@ -19,15 +19,20 @@ const Uploader = ({ superhero }) => {
   const onUploadImage = async (event) => {
     event.preventDefault();
     const formdata = new FormData();
-    formdata.append("image", image);
+    formdata.append("image", image);;
+    // for(var pair of formdata.entries()){
+    //   console.log(pair[0]+', '+ pair[1]);
+    // }
     await dispacth(
       superheroesOperations.addSuperheroImage(superhero._id, formdata)
     );
   };
 
+  const DISABLED_BUTTON_UPLOAD = !image; 
+
   return (
     <UploadContainer>
-    <ButtonUpload type="submit" onClick={onUploadImage}>
+    <ButtonUpload type="submit"  onClick={onUploadImage} disabled={DISABLED_BUTTON_UPLOAD}>
         {<UploadIcon fill={"#ede9e9"} />}
       </ButtonUpload>
       <InputContainer>

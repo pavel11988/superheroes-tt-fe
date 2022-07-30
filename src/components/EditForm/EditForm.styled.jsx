@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 
 export const EditorContainer = styled.div`
-   background: radial-gradient(circle, rgba(159,0,244,1) 0%, rgba(15,0,79,1) 100%);
+    width:300px;
+    height: auto;
+    background: radial-gradient(circle, rgba(159,0,244,1) 0%, rgba(15,0,79,1) 100%);
     padding: 10px;
     border-radius: 25px;
+    text-align: center;
 `;
 
 export const Title = styled.h3`
@@ -22,6 +25,7 @@ export const Form = styled.form`
 `
 
 export const Field = styled.input`
+    margin-top: 3px;
     margin-bottom: 10px;
     width: 250px;
     height: 25px;
@@ -37,27 +41,38 @@ export const Field = styled.input`
         outline:2px solid blue;
     }
 `;
-export const Area = styled.textarea`
-    margin-bottom: 10px;
-    resize: none;
-    height: 40px;
-    width: 250px;
 
+export const Label = styled.label`
+    text-align: left;
+    font-weight: 700;
+    color: #0080e2;
     font-size: 15px;
-
-    border: none;
-    border-radius: 5px;
-
-    &:hover,
-    &:focus,
-    &:active{
-        outline:2px solid blue;
-    }
 `;
-export const ButtonUpdate = styled.button`
+
+export const ErrorMessage = styled.div`
+    font-size: 15px;
+    color: red;
+    margin-top:10px;
+    position: absolute;
+    top:27px;
+`
+
+export const FieldContainer = styled.div`
+    text-align: left;
+    position: relative;
+    height: 80px;
+
+    &:not(:last-of-type(n)){
+        margin-bottom: 15px;
+    }
+`
+
+export const ButtonUpdate = styled.input`
     width: 150px;
     height: 35px;
     
+    margin-top: 20px;
+
     border: transparent;
     background-color: #529aff;
     border-radius: 10px;
@@ -66,12 +81,19 @@ export const ButtonUpdate = styled.button`
     font-weight: 700;
     font-size: 14px;
 
+    &:disabled{
+        background-color: #b0b0b0cf;
+        color: #515151;
+    }
+
+   &:not(:disabled){
     &:hover,
     &:focus,
     &:active{
         background-color: #3a70ba;
         color: #ffffff85;
     }
+   }
 `;
 
 export const ButtonClose = styled.button`

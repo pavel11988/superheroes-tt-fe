@@ -30,6 +30,11 @@ export const ButtonUpload = styled.button`
 
   background-color: #009700;
 
+  &:disabled{
+    background-color: #4f4f4f;
+    opacity: 0.7;
+  }
+
   &:hover,
   &:focus {
     background-color: #007514; 

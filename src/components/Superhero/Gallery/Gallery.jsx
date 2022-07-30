@@ -16,11 +16,8 @@ import superheroesOperations from "../../../redux/superheroes/superheroOperation
 
 const Gallery = ({superhero, setImageToImageModal, setViewImageModal}) => {
     const dispacth = useDispatch();
-    console.log('gallery');
-
     const {images} = superhero;
-    console.log(images);
-    
+
     const openImage = (image) => {
         setImageToImageModal(image);
         setViewImageModal(true);

@@ -47,7 +47,6 @@ const Superhero = ({
       <RealName>{real_name}</RealName>
       <Characteristic superhero={superhero} />
       <Gallery superhero={superhero}  setViewImageModal={setViewImageModal} setImageToImageModal={setImageToImageModal}/>
-      
       <Uploader superhero={superhero}/>
       
       <ButtonsContainer>

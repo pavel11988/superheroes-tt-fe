@@ -7,7 +7,7 @@ export const FormContainer = styled.div`
     padding: 10px;
     border-radius: 25px;
     background: radial-gradient(circle, rgba(131,58,180,1) 11%, rgba(36,0,157,1) 55%, rgba(0,124,157,1) 100%);
-
+    text-align: center;
 `
 
 export const Title = styled.h3`
@@ -26,6 +26,7 @@ export const Form = styled.form`
 `
 
 export const Field = styled.input`
+    margin-top: 3px;
     margin-bottom: 10px;
     width: 250px;
     height: 25px;
@@ -41,24 +42,33 @@ export const Field = styled.input`
         outline:2px solid blue;
     }
 `;
-export const Area = styled.textarea`
-    margin-bottom: 10px;
-    resize: none;
-    height: 40px;
-    width: 250px;
 
+export const Label = styled.label`
+    text-align: left;
+    font-weight: 700;
+    color: #0080e2;
     font-size: 15px;
-
-    border: none;
-    border-radius: 5px;
-
-    &:hover,
-    &:focus,
-    &:active{
-        outline:2px solid blue;
-    }
 `;
-export const ButtonAdd = styled.button`
+
+export const ErrorMessage = styled.div`
+    font-size: 15px;
+    color: red;
+    margin-top:10px;
+    position: absolute;
+    top:27px;
+`
+
+export const FieldContainer = styled.div`
+    text-align: left;
+    position: relative;
+    height: 80px;
+
+    &:not(:last-of-type(n)){
+        margin-bottom: 15px;
+    }
+`
+
+export const ButtonAdd = styled.input`
     width: 150px;
     height: 35px;
     
@@ -72,12 +82,19 @@ export const ButtonAdd = styled.button`
     font-weight: 700;
     font-size: 14px;
 
+    &:disabled{
+        background-color: #b0b0b0cf;
+        color: #515151;
+    }
+
+   &:not(:disabled){
     &:hover,
     &:focus,
     &:active{
         background-color: #3a70ba;
         color: #ffffff85;
     }
+   }
 `;
 
 export const ButtonClose = styled.button`

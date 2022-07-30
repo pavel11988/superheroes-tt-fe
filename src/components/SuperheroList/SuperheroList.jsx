@@ -4,6 +4,7 @@ import { List } from "./SuperheroList.styled";
 
 const SuperheroList = ({ setViewEditForm, setViewImageModal, setImageToImageModal }) => {
   const superheroes = useSelector((state) => state.superheroes.superheroes);
+
   return (
     <List>
       {superheroes.map((superhero) => (

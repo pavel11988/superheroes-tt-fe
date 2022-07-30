@@ -35,10 +35,19 @@ export const RealName = styled.h4`
 `;
 
 export const ButtonsContainer = styled.div`
-  text-align: center;
+  display: flex;
+  align-self: center;
 `;
+
+export const ButtonWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  &:not(:last-of-type){
+    margin-right: 15px;
+  }
+`
+
 export const ButtonDelete = styled.button`
-  margin-right: 15px;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -64,7 +73,7 @@ export const ButtonChange = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #867200; 
+    background-color: #867200;
     opacity: 0.7;
   }
 `;
@@ -78,9 +87,11 @@ export const ButtonUpload = styled.button`
 
   background-color: #009700;
 
-  &:hover,
-  &:focus {
-    background-color: #007514; 
-    opacity: 0.7;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background-color: #007514;
+      opacity: 0.7;
+    }
   }
-`
+`;

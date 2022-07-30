@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import libs
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 
+// redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
+
+//styled components
 import {
-  Area,
   ButtonAdd,
   ButtonClose,
   ErrorMessage,
@@ -16,10 +19,17 @@ import {
   Title,
 } from "./AddForm.styled";
 
+//components
 import { ReactComponent as CloseIcon } from "../../images/cross.svg";
+import Loader from "../Loader/Loader";
 
 const InputForm = ({ setViewAddForm }) => {
   const dispatch = useDispatch();
+
+  const status = useSelector(state => state.superheroes.status);
+
+  const notify = (message) => toast.success(message);
+  
   const {
     register,
     formState: { errors, isValid },
@@ -40,10 +50,12 @@ const InputForm = ({ setViewAddForm }) => {
 
     await dispatch(superheroesOperations.addSuperhero(superhero)); // add new super hero
     await dispatch(superheroesOperations.listSuperheroes()); // refresh list hero
-
-    // clear internal component state
-    setViewAddForm('false');
+    notify("Added")
+    setViewAddForm('Superhero created');
   }
+
+  const PENDING = status === 'pending';
+  const RESOLVED = status === 'resolved';
 
   return (
     <FormContainer>
@@ -156,7 +168,8 @@ const InputForm = ({ setViewAddForm }) => {
           </ErrorMessage>
         </FieldContainer>
 
-        <ButtonAdd type="submit" value="Add" disabled={!isValid}/>
+        {PENDING && <Loader color="white"/>}
+        {RESOLVED && <ButtonAdd type="submit" value="Add" disabled={!isValid}/>}
 
       </Form>
     </FormContainer>

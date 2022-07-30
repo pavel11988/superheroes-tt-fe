@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
-export const AppContainer = styled.div``;
+export const AppContainer = styled.div`
+`;
 export const Title = styled.h1`
   text-align: center;
   text-shadow: 5px 5px 5px #5b06615d;

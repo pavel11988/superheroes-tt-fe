@@ -43,7 +43,7 @@ const EditForm = ({ setViewEditor }) => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const onSubmit = async (data) => {

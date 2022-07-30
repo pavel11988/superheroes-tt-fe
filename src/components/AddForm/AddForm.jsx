@@ -33,7 +33,7 @@ const InputForm = ({ setViewAddForm }) => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const onSubmit = async(data) => {

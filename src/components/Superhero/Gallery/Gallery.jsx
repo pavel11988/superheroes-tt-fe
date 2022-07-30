@@ -28,8 +28,8 @@ const Gallery = ({superhero, setImageToImageModal, setViewImageModal}) => {
         await dispacth(superheroesOperations.listSuperheroes());
       };
 
-    const GALLERY_CLEAR = images.length <= 1;
-    const GALLERY_USER = images.length >= 1;
+    const GALLERY_CLEAR = images.length === 0;
+    const GALLERY_USER = images.length > 0;
 
     return (
         <GalleryContainer>

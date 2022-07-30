@@ -1,7 +1,6 @@
 // import libs
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import toast from 'react-hot-toast';
 
 // redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
@@ -28,7 +27,6 @@ const InputForm = ({ setViewAddForm }) => {
 
   const status = useSelector(state => state.superheroes.status);
 
-  const notify = (message) => toast.success(message);
   
   const {
     register,
@@ -50,7 +48,6 @@ const InputForm = ({ setViewAddForm }) => {
 
     await dispatch(superheroesOperations.addSuperhero(superhero)); // add new super hero
     await dispatch(superheroesOperations.listSuperheroes()); // refresh list hero
-    notify("Added")
     setViewAddForm('Superhero created');
   }
 

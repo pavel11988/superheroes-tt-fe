@@ -1,6 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BASE_URL, API_SUPERHEROES } from "../../config";
+import toast from 'react-hot-toast';
+
+const notifySuccess = (message) => toast.success(message);
+const notifyError = (message) => toast.error(message);
+
 
 const listSuperheroes = createAsyncThunk(
   "superheroes/listSuperheroes",
@@ -21,8 +26,9 @@ const addSuperhero = createAsyncThunk(
   async (newSupehero) => {
     try {
       await axios.post(`${BASE_URL}/${API_SUPERHEROES}`, newSupehero);
+      notifySuccess("Superhero is created")
     } catch (error) {
-      alert("Error adding superhero", error.message);
+      notifyError("Error adding superhero");
       throw error;
     }
   }
@@ -31,9 +37,10 @@ const addSuperhero = createAsyncThunk(
 const deleteSuperhero = createAsyncThunk("superheroes/deleteSuperhero", async(superheroId) => {
   try{
     await axios.delete(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}`)
+    notifySuccess("Superhero is removed")
   } catch (error){
-    alert("Error deleting superhero", error.message);
-      throw error;
+    notifyError("Error deleting superhero");
+    throw error;
   }
 })
 
@@ -41,8 +48,8 @@ const getSuperheroById = createAsyncThunk("superheroes/getSuperheroById", async(
 
   try{
     const {data} = await axios.get(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}`);
-    console.log(data)
     return data;
+    
   } catch(error) {
     alert("Error get superhero by id", error.message);
     throw error;
@@ -51,18 +58,21 @@ const getSuperheroById = createAsyncThunk("superheroes/getSuperheroById", async(
 
 const updateSuperhero = createAsyncThunk("superheroes/changeSuperhero", async({superheroId, updatedSuperhero}) => {
   try{
-    await axios.put(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}`, updatedSuperhero)
+    await axios.put(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}`, updatedSuperhero);
+    notifySuccess("Superhero is updated")
+
   } catch(error){
-    alert("Error changed superhero", error.message);
+    notifyError("Error changed superhero");
     throw error;
   }
 })
 
-const addSuperheroImage = createAsyncThunk("superheroes/addSuperheroImage", async(superheroId, formdata) => {
+const addSuperheroImage = createAsyncThunk("superheroes/addSuperheroImage", async(data) => {
   try{
-    await axios.patch(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}`, formdata)  
+    await axios.patch(`${BASE_URL}/${API_SUPERHEROES}/${data.superheroId}`, data.formData);
+    notifySuccess("New image added") 
   } catch(error){
-    alert("Error superhero add image ", error.message);
+    notifyError("Error add image");
     throw error;
   }
 })
@@ -72,8 +82,9 @@ const deleteSuperheroImage = createAsyncThunk("superheroes/deleteSuperheroImage"
   const imageId = data.image.id;
   try{
     await axios.delete(`${BASE_URL}/${API_SUPERHEROES}/${superheroId}/${imageId}`)  
+    notifySuccess("Image removed")
   } catch(error){
-    alert("Error superhero delete image ", error.message);
+    notifyError("Image deletion error");
     throw error;
   }
 })

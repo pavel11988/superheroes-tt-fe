@@ -5,9 +5,6 @@ import { ListNumbers, PageButton, PageNumber, PaginationContainer } from "./Pagi
 const Pagination = ({ totalPages }) => {
     const dispatch = useDispatch();
     const limit = useSelector(state => state.superheroes.limit)
-    const currentPage = useSelector(state => state.superheroes.page)
-
-
     const pageNumbers = [];
 
     for(let i = 1; i <= totalPages; i+=1){
@@ -18,7 +15,6 @@ const Pagination = ({ totalPages }) => {
         event.preventDefault();
         const page = event.target.name;
         const numberPage = Number(page);
-        console.log("numberPage:", numberPage)
         await dispatch(superheroesOperations.listSuperheroes(numberPage, limit));
     }
 

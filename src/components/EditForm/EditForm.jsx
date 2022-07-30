@@ -1,7 +1,6 @@
 //import libs
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import toast from 'react-hot-toast';
 
 // redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
@@ -29,10 +28,11 @@ const EditForm = ({ setViewEditor }) => {
   const currentSuperhero = useSelector(
     (state) => state.superheroes.currentSuperhero
   );
-
   const status = useSelector(state => state.superheroes.status);
+  const currentPage = useSelector(state => state.superheroes.page)
+  const currentLimit = useSelector(state => state.superheroes.limit)
+  
 
-  const notify = (message) => toast.success(message);
 
   const { nickname, real_name, origin_description, superpowers, catch_phrase } =
     currentSuperhero;
@@ -61,9 +61,9 @@ const EditForm = ({ setViewEditor }) => {
     await dispatch(
       superheroesOperations.updateSuperhero({ superheroId, updatedSuperhero })
     );
-    await dispatch(superheroesOperations.listSuperheroes());
+    
+    await dispatch(superheroesOperations.listSuperheroes(currentPage, currentLimit));
 
-    notify("Superhero changed");
     setViewEditor(false);
   };
 

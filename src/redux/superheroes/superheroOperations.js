@@ -25,7 +25,6 @@ const listSuperheroes = createAsyncThunk(
 const addSuperhero = createAsyncThunk(
   "superheroes/addSuperhero",
   async (newSupehero) => {
-    console.log(newSupehero);
     try {
       await axios.post(`${BASE_URL}/${API_SUPERHEROES}`, newSupehero);
       notifySuccess("Superhero is created");

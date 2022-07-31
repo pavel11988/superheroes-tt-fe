@@ -1,6 +1,7 @@
 // libs
 import { useState } from "react";
 import toast from "react-hot-toast";
+import PropTypes from "prop-types";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
@@ -113,6 +114,16 @@ const Uploader = ({ superhero }) => {
       )}
     </UploadContainer>
   );
+};
+
+Uploader.propTypes = {
+  superhero: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+    real_name: PropTypes.string.isRequired,
+    origin_description: PropTypes.string.isRequired,
+    superpowers: PropTypes.string.isRequired,
+    catch_phrase: PropTypes.string.isRequired,
+  }),
 };
 
 export default Uploader;

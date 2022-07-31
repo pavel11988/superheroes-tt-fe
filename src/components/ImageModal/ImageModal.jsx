@@ -1,3 +1,6 @@
+// libs
+import PropTypes from "prop-types";
+
 // config
 import { BASE_URL, IMAGES } from "../../config";
 
@@ -29,6 +32,12 @@ const ImageModal = ({
       />
     </ModalContainer>
   );
+};
+
+ImageModal.propTypes = {
+  setImageToImageModal: PropTypes.func.isRequired,
+  imageToImageModal: PropTypes.object.isRequired,
+  setViewImageModal: PropTypes.func.isRequired,
 };
 
 export default ImageModal;

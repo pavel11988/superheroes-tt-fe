@@ -1,6 +1,7 @@
 // import libs
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 // redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
@@ -21,7 +22,6 @@ import {
   Label,
   Title,
 } from "./EditForm.styled";
-
 
 const EditForm = ({ setViewEditor }) => {
   const dispatch = useDispatch();
@@ -211,6 +211,10 @@ const EditForm = ({ setViewEditor }) => {
       </Form>
     </EditorContainer>
   );
+};
+
+EditForm.propTypes = {
+  setViewEditor: PropTypes.func.isRequired,
 };
 
 export default EditForm;

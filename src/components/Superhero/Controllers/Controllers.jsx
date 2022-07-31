@@ -1,6 +1,9 @@
 // import libs
 import { useState } from "react";
 
+// libs
+import PropTypes, { func } from "prop-types";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,6 +26,7 @@ const Controllers = ({ superhero, setViewEditForm }) => {
   const status = useSelector((state) => state.superheroes.status);
   const currentPage = useSelector((state) => state.superheroes.page);
   const currentLimit = useSelector((state) => state.superheroes.limit);
+  const superheroes = useSelector((state) => state.superheroes.superheroes);
 
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [loadingEdit, setLoadingEdit] = useState(false);
@@ -31,8 +35,14 @@ const Controllers = ({ superhero, setViewEditForm }) => {
     event.preventDefault();
     setLoadingDelete(true);
     await dispatch(superheroesOperations.deleteSuperhero(superhero._id));
+
+    let reqPage = currentPage;
+    if (superheroes.length === 1 && currentPage > 0) {
+      reqPage = currentPage - 1;
+    }
+
     await dispatch(
-      superheroesOperations.listSuperheroes(currentPage, currentLimit)
+      superheroesOperations.listSuperheroes(reqPage, currentLimit)
     );
     setLoadingDelete(false);
   };
@@ -71,6 +81,17 @@ const Controllers = ({ superhero, setViewEditForm }) => {
       </ButtonWrapper>
     </ButtonsContainer>
   );
+};
+
+Controllers.propTypes = {
+  superhero: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+    real_name: PropTypes.string.isRequired,
+    origin_description: PropTypes.string.isRequired,
+    superpowers: PropTypes.string.isRequired,
+    catch_phrase: PropTypes.string.isRequired,
+  }),
+  setViewEditForm: func.isRequired,
 };
 
 export default Controllers;

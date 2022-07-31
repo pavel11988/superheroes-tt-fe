@@ -1,3 +1,6 @@
+// libs
+import PropTypes from "prop-types";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
@@ -53,6 +56,10 @@ const Pagination = ({ totalPages }) => {
       </ListNumbers>
     </PaginationContainer>
   );
+};
+
+Pagination.propTypes = {
+  totalPages: PropTypes.number.isRequired,
 };
 
 export default Pagination;

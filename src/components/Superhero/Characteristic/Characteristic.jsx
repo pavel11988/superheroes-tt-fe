@@ -1,3 +1,6 @@
+// libs
+import PropTypes from "prop-types";
+
 // styled components
 import {
   CatchPhrase,
@@ -21,6 +24,16 @@ const Characteristic = ({ superhero }) => {
       </CatchPhrase>
     </CharacteristicContainer>
   );
+};
+
+Characteristic.propTypes = {
+  superhero: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+    real_name: PropTypes.string.isRequired,
+    origin_description: PropTypes.string.isRequired,
+    superpowers: PropTypes.string.isRequired,
+    catch_phrase: PropTypes.string.isRequired,
+  }),
 };
 
 export default Characteristic;

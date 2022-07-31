@@ -1,3 +1,6 @@
+// libs
+import PropTypes, { objectOf } from "prop-types";
+
 // config
 import { BASE_URL, IMAGES } from "../../../config";
 
@@ -25,6 +28,16 @@ const Avatar = ({ superhero }) => {
       )}
     </AvatarContainer>
   );
+};
+
+Avatar.propTypes = {
+  superhero: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+    real_name: PropTypes.string.isRequired,
+    origin_description: PropTypes.string.isRequired,
+    superpowers: PropTypes.string.isRequired,
+    catch_phrase: PropTypes.string.isRequired,
+  }),
 };
 
 export default Avatar;

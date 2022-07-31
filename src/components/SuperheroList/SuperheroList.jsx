@@ -1,3 +1,6 @@
+// libs
+import PropTypes from "prop-types";
+
 // redux
 import { useSelector } from "react-redux";
 
@@ -27,6 +30,12 @@ const SuperheroList = ({
       ))}
     </List>
   );
+};
+
+SuperheroList.propTypes = {
+  setViewEditForm: PropTypes.func.isRequired,
+  setViewImageModal: PropTypes.func.isRequired,
+  setImageToImageModal: PropTypes.func.isRequired,
 };
 
 export default SuperheroList;

@@ -1,8 +1,11 @@
+// libs
+import PropTypes from "prop-types";
+
 // config
 import { BASE_URL, IMAGES } from "../../../config";
 
 // redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import superheroesOperations from "../../../redux/superheroes/superheroOperations";
 
 // components
@@ -21,6 +24,9 @@ import {
 
 const Gallery = ({ superhero, setImageToImageModal, setViewImageModal }) => {
   const dispacth = useDispatch();
+  const currentPage = useSelector((state) => state.superheroes.page);
+  const currentLimit = useSelector((state) => state.superheroes.limit);
+
   const { images } = superhero;
 
   const openImage = (image) => {
@@ -30,7 +36,9 @@ const Gallery = ({ superhero, setImageToImageModal, setViewImageModal }) => {
 
   const deleteImage = async (data) => {
     await dispacth(superheroesOperations.deleteSuperheroImage(data));
-    await dispacth(superheroesOperations.listSuperheroes());
+    await dispacth(
+      superheroesOperations.listSuperheroes(currentPage, currentLimit)
+    );
   };
 
   const GALLERY_CLEAR = images.length === 0;
@@ -77,6 +85,18 @@ const Gallery = ({ superhero, setImageToImageModal, setViewImageModal }) => {
       )}
     </GalleryContainer>
   );
+};
+
+Gallery.propTypes = {
+  superhero: PropTypes.shape({
+    nickname: PropTypes.string.isRequired,
+    real_name: PropTypes.string.isRequired,
+    origin_description: PropTypes.string.isRequired,
+    superpowers: PropTypes.string.isRequired,
+    catch_phrase: PropTypes.string.isRequired,
+  }),
+  setImageToImageModal: PropTypes.func.isRequired,
+  setViewImageModal: PropTypes.func.isRequired,
 };
 
 export default Gallery;

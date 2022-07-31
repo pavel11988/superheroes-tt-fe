@@ -1,6 +1,7 @@
 // import libs
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
 // redux
 import superheroesOperations from "../../redux/superheroes/superheroOperations";
@@ -22,7 +23,7 @@ import {
 import { ReactComponent as CloseIcon } from "../../images/cross.svg";
 import Loader from "../Loader/Loader";
 
-const InputForm = ({ setViewAddForm }) => {
+const AddForm = ({ setViewAddForm }) => {
   const dispatch = useDispatch();
 
   const {
@@ -189,4 +190,8 @@ const InputForm = ({ setViewAddForm }) => {
   );
 };
 
-export default InputForm;
+AddForm.propTypes = {
+  setViewAddForm: PropTypes.func.isRequired,
+};
+
+export default AddForm;

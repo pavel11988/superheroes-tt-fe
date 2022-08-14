@@ -1,5 +1,5 @@
 // libs
-import PropTypes, { objectOf } from "prop-types";
+import PropTypes from "prop-types";
 
 // config
 import { BASE_URL, IMAGES } from "../../../config";
